@@ -4,7 +4,7 @@ function gameCombosArray(deck)
     [player => (combos,comboTypes(player)) for (player,combos) in groupCombos(deck)]
 end
 
-ev(r) = (r.notqual-2*(r.win-r.lose)) / binomial(49,3) + r.antebonus
+ev(r) = (r.notqual+2*(r.win-r.lose)) / binomial(49,3) + r.antebonus
 
 function constructComboTypesDF()
     gca = gameCombosArray(carddeck)
@@ -18,6 +18,7 @@ function constructComboTypesDF()
     rdf = DataFrame(hand=hands,combos=combos,notqual=notqual,losses=losses,draw=draw,win=wins)
     rdf.antebonus = anteBonus.(rdf.hand)
     rdf.ev = ev.(r for r in eachrow(rdf))
+    sort!(rdf)
 end
 
 function loadcombotypes()
@@ -28,4 +29,8 @@ end
 
 function savecombotypes(rdf)
     CSV.write("./src/Brag/data/comboTypes.csv",rdf)
+end
+
+function gameev(rdf)
+    sum(max.(rdf.ev,-1) .* rdf.combos) / sum(rdf.combos)
 end
