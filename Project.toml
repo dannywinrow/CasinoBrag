@@ -1,0 +1,10 @@
+name = "CasinoBrag"
+uuid = "7fb5b982-b1d6-4269-8b3d-6104b146c11a"
+authors = ["dannywinrow <dannywinrow@live.co.uk>"]
+version = "0.1.0"
+
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+Cards = "fcda22a9-0d6a-4819-86f5-13bd25ca17c4"
+Combinatorics = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
